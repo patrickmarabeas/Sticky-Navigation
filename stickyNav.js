@@ -26,9 +26,10 @@
 	};
 	
 	$(window).on('load', function () {
-		
-		var target = $('body').data('stickynavtarget')
-		$(target).stickyNav();
+		if ($("body").attr('data-stickynavtarget')) {
+			var target = $('body').data('stickynavtarget')
+			$(target).stickyNav();
+		}
 	});
 
 })(jQuery)
