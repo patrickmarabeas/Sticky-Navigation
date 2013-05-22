@@ -4,8 +4,9 @@
 	
 		var $this = this;
 	
-		var stickyPoint = $this.position().top;
+		var stickyPoint = $this.offset().top;
 		var stickyHeight = $this.outerHeight(); //returns an integer
+		var stickyWidth = $this.width();
 		var nextPadding = parseInt($this.next().css('padding-top')); //.css() returns px, need an integer
 		var calc = stickyHeight + nextPadding;
 		
@@ -13,6 +14,7 @@
 
 			if ($(window).scrollTop() > stickyPoint){
 				$this.addClass('fixed').next().css('padding-top',(calc));
+				$this.css('width',(stickyWidth));
 			}
 			else {
 				$this.removeClass('fixed').next().css('padding-top',(nextPadding));
