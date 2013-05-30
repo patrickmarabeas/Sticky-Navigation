@@ -11,8 +11,13 @@ It can also be called with:
 
 	$(document).ready(function() {
 		
-
 		$("#navigation_area").stickyNav();
+		
+		//or
+		
+		$("#navigation_area").stickyNav({
+			maxwidth: 800
+		});
 		
 	});
 	
