@@ -1,29 +1,53 @@
 (function($) {
 
-	$.fn.stickyNav = function(config) {
+	$.stickyNav = function(element, config) {
 	
-		var $this = this;
-	
-		var stickyPoint = $this.offset().top;
-		var stickyHeight = $this.outerHeight(); //returns an integer
-		var stickyWidth = $this.width();
-		var nextPadding = parseInt($this.next().css('padding-top')); //.css() returns px, need an integer
+		var $element = $(element),
+             element = element;
+		var plugin = this;
+		
+		var stickyPoint = $element.offset().top;
+		var stickyHeight = $element.outerHeight(); //returns an integer
+		var stickyWidth = $element.width();
+		var nextPadding = parseInt($element.next().css('padding-top')); //.css() returns px, need an integer
 		var calc = stickyHeight + nextPadding;
 		
-		$(window).scroll(function(){
+		plugin.init = function() {
 
-			if ($(window).scrollTop() > stickyPoint){
-				$this.addClass('fixed').next().css('padding-top',(calc));
-				$this.css('width',(stickyWidth));
-			}
-			else {
-				$this.removeClass('fixed').next().css('padding-top',(nextPadding));
-				
-			}
-		 
-		});
+			$(window).scroll(function(){
+
+				if ($(window).scrollTop() > stickyPoint){
+					$element.addClass('fixed').next().css('padding-top',(calc));
+					$element.css('width',(stickyWidth));
+				}
+				else {
+					$element.removeClass('fixed').next().css('padding-top',(nextPadding));
+					
+				}
+			 
+			});
+			
+		};
+		
+		plugin.destroy = function() {
+			$(window).unbind('scroll');
+			$element.removeClass('fixed').next().css('padding-top',(nextPadding));
+		};
+		
+		plugin.init();
 	
 	};
+	
+	$.fn.stickyNav = function(config) {
+
+        return this.each(function() {
+            if (undefined == $(this).data('stickyNav')) {
+                var plugin = new $.stickyNav(this, config);
+                $(this).data('stickyNav', plugin);
+            }
+        });
+
+    }
 	
 	$(window).on('load', function () {
 		if ($("body").attr('data-stickynavtarget')) {
