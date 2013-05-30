@@ -6,6 +6,11 @@
              element = element;
 		var plugin = this;
 		
+		var defaults = {
+			maxwidth: 0
+		};
+		var config = $.extend(defaults, config);
+		
 		var stickyPoint = $element.offset().top;
 		var stickyHeight = $element.outerHeight(); //returns an integer
 		var stickyWidth = $element.width();
@@ -15,18 +20,21 @@
 		plugin.init = function() {
 
 			$(window).scroll(function(){
-
-				if ($(window).scrollTop() > stickyPoint){
-					$element.addClass('fixed').next().css('padding-top',(calc));
-					$element.css('width',(stickyWidth));
-				}
-				else {
-					$element.removeClass('fixed').next().css('padding-top',(nextPadding));
-					
-				}
-			 
-			});
 			
+				if ($(window).width() > config.maxwidth) {
+					
+					if ($(window).scrollTop() > stickyPoint){
+						$element.addClass('fixed').next().css('padding-top',(calc));
+						$element.css('width',(stickyWidth));
+					}
+					else {
+						$element.removeClass('fixed').next().css('padding-top',(nextPadding));
+						
+					}
+				}
+				
+			});
+
 		};
 		
 		plugin.destroy = function() {
