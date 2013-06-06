@@ -48,9 +48,17 @@
 			console.log('destroyed');
 		};
 		
+		var wWidth = $(window).width();
 		$(window).resize(function() {
-			plugin.destroy();
-			plugin.init();
+			if ($(window).width() == wWidth) {
+				plugin.destroy();
+				plugin.init();
+				
+			}
+			else {
+				wWidth = $(window).width();
+			}
+			
 		});
 		
 		plugin.init();
