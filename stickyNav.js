@@ -7,7 +7,7 @@
 		var plugin = this;
 		
 		var defaults = {
-			maxwidth: 0
+
 		};
 		var config = $.extend(defaults, config);
 		
@@ -25,14 +25,8 @@
 
 			$(window).scroll(function(){
 			
-				if ($(window).width() > config.maxwidth) {
-					
-					if ($(window).scrollTop() > stickyPoint){
-						$element.addClass('fixed').next().css('padding-top',(calc));
-					}
-					else {
-						$element.removeClass('fixed').next().css('padding-top',(nextPadding));
-					}
+				if ($(window).scrollTop() > stickyPoint){
+					$element.addClass('fixed').next().css('padding-top',(calc));
 				}
 				else {
 					$element.removeClass('fixed').next().css('padding-top',(nextPadding));
