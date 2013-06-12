@@ -38,7 +38,7 @@
 		
 		plugin.destroy = function() {
 			$(window).unbind('scroll');
-			$element.removeClass('fixed').next().css('padding-top',(nextPadding));
+			$element.removeClass('fixed').next().removeClass('padding').css('padding-top',(nextPadding));
 			console.log('destroyed');
 		};
 		
