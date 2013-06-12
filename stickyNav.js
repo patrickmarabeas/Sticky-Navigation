@@ -23,13 +23,6 @@
 			nextPadding = parseInt($element.next().css('padding-top')); //.css() returns px, need an integer
 			calc = stickyHeight + nextPadding;
 			
-			if ($(window).scrollTop() > stickyPoint){
-				$element.addClass('fixed').next().addClass('padding').css('padding-top',(calc));
-			}
-			else {
-				$element.removeClass('fixed').next().removeClass('padding').css('padding-top',(nextPadding));
-			}
-			
 			$(window).scroll(function(){
 					
 				if ($(window).scrollTop() > stickyPoint){
