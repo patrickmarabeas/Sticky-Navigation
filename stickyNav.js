@@ -59,6 +59,7 @@
 		};
 		
 		$(window).resize(function() {
+			plugin.destroy();
 			plugin.init();
 		});
 
