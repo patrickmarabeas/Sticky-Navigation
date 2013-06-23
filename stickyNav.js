@@ -3,7 +3,7 @@
 	$.stickyNav = function(element, config) {
 	
 		var $element = $(element),
-            	 element = element;
+             element = element;
 		var plugin = this;
 		
 		var defaults = {
@@ -22,6 +22,9 @@
 			stickyHeight = $element.outerHeight(); //returns an integer
 			nextPadding = parseInt($element.next().css('padding-top')); //.css() returns px, need an integer
 			calc = stickyHeight + nextPadding;
+			
+			console.log(stickyPoint);
+			console.log(stickyHeight);
 			
 			$(window).scroll(function(){
 					
@@ -66,5 +69,23 @@
 		plugin.init();
 	
 	};
+	
+	$.fn.stickyNav = function(config) {
+
+        return this.each(function() {
+            if (undefined == $(this).data('stickyNav')) {
+                var plugin = new $.stickyNav(this, config);
+                $(this).data('stickyNav', plugin);
+            }
+        });
+
+    }
+	
+	$(window).on('load', function () {
+		if ($("body").attr('data-stickynavtarget')) {
+			var target = $('body').data('stickynavtarget')
+			$(target).stickyNav();
+		}
+	});
 	
 })(jQuery)
