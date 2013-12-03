@@ -1,21 +1,21 @@
-Sticky Navigation
-=================
+# Sticky Element
 
-jQuery plugin for sticky header or navigation
+### jQuery plugin for sticky elements
 
-For something new, I went down the Twitter Bootstrap path and changed how the user calls/defines the plugin. Rather than calling the plugin specifically the user simply needs to add a data attribute to the body tag stating the element they want to make sticky.
+Can be applied to an element via data attributes:
 
-	<body data-stickynavtarget="#navigation_area">
+	<body data-stickyelemtarget="#navigation_area">
 	
-It can also be called with:
+Or via the usual:
 
 	$(document).ready(function() {
 		
-		$("#navigation_area").stickyNav();
+		$("#navigation_area").stickyElem();
 		
 	});
 	
-Can be destroyed and initiated with:
+Can be destroyed, initiated and reset with:
 
-	$("#navigation_area").data('stickyNav').destroy();
-	$("#navigation_area").data('stickyNav').init();
+	$("#navigation_area").data('stickyElem').destroy();
+	$("#navigation_area").data('stickyElem').init();
+	$("#navigation_area").data('stickyElem').reset();
